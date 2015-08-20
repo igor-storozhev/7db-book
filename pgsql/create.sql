@@ -83,3 +83,15 @@ WHERE events.title ILIKE 'LARP%';
 
 alter table events add column active boolean default true;
 
+INSERT INTO countries VALUES ('RU', 'Russia');
+
+INSERT INTO cities VALUES ('Sant-Petersburg', '197000', 'RU');
+
+INSERT INTO venues (name, street_address, type, postal_code,  country_code)
+	VALUES ('My Place', 'Oak street', 'public', '197384', 'RU');
+
+INSERT INTO events (title, starts, ends, venue_id)
+	VALUES ('Big Party', '2016-08-28 20:00:00', '2016-08-28 23:59:59', 
+		(SELECT venue_id FROM venues WHERE name = 'Cristal Ballroom')
+		);
+
